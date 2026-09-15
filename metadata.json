@@ -1,0 +1,6 @@
+{
+  "name": "Type System Generator",
+  "description": "An advanced responsive typography system generator with modular scales, fluid clamp calculations, variable font axes, multi-language support (English & Farsi), and real-time specimen and simulation previews.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
