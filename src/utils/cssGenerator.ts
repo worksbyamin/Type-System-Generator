@@ -78,44 +78,64 @@ export function calculateFluidClamp(minPx: number, maxPx: number): string {
 export function getActiveScaleSteps(config: LanguageTypographyConfig): ScaleStep[] {
   const steps: ScaleStep[] = [];
   
+  const activePowers: number[] = [];
   for (let p = config.maxPower; p >= config.minPower; p--) {
-    if (config.hiddenPowers?.includes(p)) continue;
+    if (!config.hiddenPowers?.includes(p)) {
+      activePowers.push(p);
+    }
+  }
+  
+  const headingPowers = activePowers.filter(p => p > 0);
+  const basePower = activePowers.find(p => p === 0);
+  const smallPowers = activePowers.filter(p => p < 0);
+  
+  headingPowers.forEach((p, idx) => {
+    const hNum = idx + 1;
+    let name = `h${hNum}`;
+    let label = `Heading ${hNum}`;
+    let tag = (hNum <= 6 ? `h${hNum}` : 'h1') as any;
     
-    let name = '';
-    let label = '';
-    let tag: 'h1'|'h2'|'h3'|'h4'|'h5'|'p'|'small' = 'p';
-    
-    if (p > 5) {
-      name = p === 6 ? 'display' : `display${p - 5}`;
-      label = p === 6 ? 'Display / Hero' : `Display ${p - 5}`;
+    if (headingPowers.length > 5 && hNum <= headingPowers.length - 5) {
+      const displayNum = headingPowers.length - 5 - hNum + 1;
+      name = displayNum === 1 ? 'display' : `display${displayNum}`;
+      label = displayNum === 1 ? 'Display / Hero' : `Display ${displayNum}`;
       tag = 'h1';
-    } else if (p > 0) {
-      name = `h${6 - p}`;
-      label = `Heading ${6 - p}`;
-      tag = `h${6 - p}` as any;
-    } else if (p === 0) {
-      name = 'base';
-      label = 'Base Body';
-      tag = 'p';
-    } else if (p === -1) {
-      name = 'small';
-      label = 'Small / Caption';
-      tag = 'small';
-    } else {
-      name = p === -2 ? 'xsmall' : `xsmall${Math.abs(p) - 1}`;
-      label = p === -2 ? 'X-Small / Legal' : `X-Small ${Math.abs(p) - 1}`;
-      tag = 'small';
     }
     
     steps.push({
-      name: name,
+      name,
       tag,
       power: p,
       label
     });
+  });
+  
+  if (basePower !== undefined) {
+    steps.push({
+      name: 'base',
+      tag: 'p',
+      power: 0,
+      label: 'Base Body'
+    });
   }
   
+  smallPowers.forEach((p, idx) => {
+    const sNum = idx + 1;
+    const name = sNum === 1 ? 'small' : (sNum === 2 ? 'xsmall' : `xsmall${sNum - 1}`);
+    const label = sNum === 1 ? 'Small / Caption' : (sNum === 2 ? 'X-Small / Legal' : `X-Small ${sNum - 1}`);
+    steps.push({
+      name,
+      tag: 'small',
+      power: p,
+      label
+    });
+  });
+  
   return steps;
+}
+
+export function getAllScaleSteps(config: LanguageTypographyConfig): ScaleStep[] {
+  return getActiveScaleSteps(config);
 }
 
 export function generateCodeOutput(appConfig: AppConfig): string {

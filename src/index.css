@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 html, body, #root {
   height: 100%;
@@ -70,6 +71,37 @@ html, body, #root {
 
 /* Custom range inputs */
 input[type="range"] {
+  accent-color: #000000;
+}
+.dark input[type="range"] {
   accent-color: #ffffff;
 }
 
+
+/* Explicitly style WebKit range thumbs since appearance-none drops them otherwise in some contexts */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+}
+
+.dark input[type="range"]::-webkit-slider-thumb {
+  background: #ffffff;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+  border: none;
+}
+
+.dark input[type="range"]::-moz-range-thumb {
+  background: #ffffff;
+}

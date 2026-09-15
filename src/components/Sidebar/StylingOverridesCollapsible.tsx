@@ -28,26 +28,26 @@ export const StylingOverridesCollapsible: React.FC<StylingOverridesCollapsiblePr
   };
 
   return (
-    <div className="bg-[#1c1c1f] rounded-xl border border-white/5 overflow-hidden transition-all">
+    <div className="bg-white dark:bg-[#1c1c1f] rounded-xl border border-black/10 dark:border-white/5 overflow-hidden transition-all">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-3 flex items-center justify-between text-left text-xs font-semibold text-white hover:bg-white/[0.02]"
+        className="w-full px-4 py-3 flex items-center justify-between text-left text-xs font-semibold text-neutral-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/[0.02]"
       >
         <div className="flex items-center gap-2">
-          <PenTool className="w-4 h-4 text-white" />
+          <PenTool className="w-4 h-4 text-neutral-900 dark:text-white" />
           <span>Styling Overrides</span>
         </div>
         {isOpen ? (
-          <ChevronDown className="w-4 h-4 text-neutral-400" />
+          <ChevronDown className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
         ) : (
-          <ChevronRight className="w-4 h-4 text-neutral-400" />
+          <ChevronRight className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
         )}
       </button>
 
       {isOpen && (
-        <div className="p-4 pt-1 flex flex-col gap-4 border-t border-white/5 bg-[#17171a]/50">
-          <div className="flex items-center justify-between p-2.5 bg-[#1f1f23] rounded-lg border border-white/5">
-            <span className="text-xs font-medium text-neutral-200">
+        <div className="p-4 pt-1 flex flex-col gap-4 border-t border-black/10 dark:border-white/5 bg-neutral-50 dark:bg-[#17171a]/50">
+          <div className="flex items-center justify-between p-2.5 bg-neutral-100 dark:bg-[#1f1f23] rounded-lg border border-black/10 dark:border-white/5">
+            <span className="text-xs font-medium text-neutral-900 dark:text-neutral-200">
               Enable Styling Overrides
             </span>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -57,7 +57,7 @@ export const StylingOverridesCollapsible: React.FC<StylingOverridesCollapsiblePr
                 onChange={(e) => onChange({ decorActive: e.target.checked })}
                 className="sr-only peer"
               />
-              <div className="w-8 h-4.5 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-white peer-checked:after:bg-black" />
+              <div className="w-8 h-4.5 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-black peer-checked:after:bg-white dark:peer-checked:bg-white dark:peer-checked:after:bg-black" />
             </label>
           </div>
 
@@ -72,15 +72,15 @@ export const StylingOverridesCollapsible: React.FC<StylingOverridesCollapsiblePr
                 return (
                   <div
                     key={step.name}
-                    className="p-2.5 bg-[#202024] rounded-lg border border-white/5 flex flex-col gap-2"
+                    className="p-2.5 bg-neutral-100 dark:bg-[#202024] rounded-lg border border-black/10 dark:border-white/5 flex flex-col gap-2"
                   >
-                    <span className="text-xs font-semibold text-white uppercase">
+                    <span className="text-xs font-semibold text-neutral-900 dark:text-white uppercase">
                       {step.label} ({step.tag})
                     </span>
 
                     <div className="grid grid-cols-2 gap-2">
                       <div className="flex flex-col gap-1">
-                        <label className="text-[10px] font-medium text-neutral-400 uppercase">
+                        <label className="text-[10px] font-medium text-neutral-600 dark:text-neutral-400 uppercase">
                           Transform
                         </label>
                         <select
@@ -90,7 +90,7 @@ export const StylingOverridesCollapsible: React.FC<StylingOverridesCollapsiblePr
                               transform: e.target.value as TextDecorationSetting['transform']
                             })
                           }
-                          className="bg-[#18181b] border border-white/10 rounded px-2 py-1 text-xs text-white outline-none focus:border-white/30"
+                          className="bg-white dark:bg-[#18181b] border border-black/10 dark:border-white/10 rounded px-2 py-1 text-xs text-neutral-900 dark:text-white outline-none focus:border-black/30 dark:focus:border-white/30"
                         >
                           <option value="none">None</option>
                           <option value="uppercase">Uppercase</option>
@@ -100,7 +100,7 @@ export const StylingOverridesCollapsible: React.FC<StylingOverridesCollapsiblePr
                       </div>
 
                       <div className="flex flex-col gap-1">
-                        <label className="text-[10px] font-medium text-neutral-400 uppercase">
+                        <label className="text-[10px] font-medium text-neutral-600 dark:text-neutral-400 uppercase">
                           Decoration
                         </label>
                         <select
@@ -110,7 +110,7 @@ export const StylingOverridesCollapsible: React.FC<StylingOverridesCollapsiblePr
                               decoration: e.target.value as TextDecorationSetting['decoration']
                             })
                           }
-                          className="bg-[#18181b] border border-white/10 rounded px-2 py-1 text-xs text-white outline-none focus:border-white/30"
+                          className="bg-white dark:bg-[#18181b] border border-black/10 dark:border-white/10 rounded px-2 py-1 text-xs text-neutral-900 dark:text-white outline-none focus:border-black/30 dark:focus:border-white/30"
                         >
                           <option value="none">None</option>
                           <option value="underline">Underline</option>

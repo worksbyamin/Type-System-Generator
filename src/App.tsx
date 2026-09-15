@@ -13,6 +13,7 @@ export default function App() {
     viewLayout: 'split',
     simScenario: 'landing',
     exportFormat: 'css',
+    uiTheme: typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
     sidebarCollapsed: false,
     en: DEFAULT_EN_CONFIG,
     fa: DEFAULT_FA_CONFIG
@@ -85,6 +86,14 @@ export default function App() {
     });
   };
 
+  useEffect(() => {
+    if (appConfig.uiTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [appConfig.uiTheme]);
+
   return (
     <div
       className="
@@ -95,8 +104,9 @@ export default function App() {
         flex
         flex-row
         overflow-hidden
-        bg-[#0e0e10]
-        text-[#f2f2f4]
+        bg-white dark:bg-[#0e0e10]
+        text-neutral-900 dark:text-[#f2f2f4]
+        transition-colors
       "
     >
       <Sidebar

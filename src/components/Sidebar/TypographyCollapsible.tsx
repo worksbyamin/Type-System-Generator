@@ -74,27 +74,27 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
     : fontList;
 
   return (
-    <div className="bg-[#1c1c1f] rounded-xl border border-white/5 overflow-hidden transition-all">
+    <div className="bg-white dark:bg-[#1c1c1f] rounded-xl border border-black/10 dark:border-white/5 overflow-hidden transition-all">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-3 flex items-center justify-between text-left text-xs font-semibold text-white hover:bg-white/[0.02]"
+        className="w-full px-4 py-3 flex items-center justify-between text-left text-xs font-semibold text-neutral-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/[0.02]"
       >
         <div className="flex items-center gap-2">
-          <Type className="w-4 h-4 text-white" />
+          <Type className="w-4 h-4 text-neutral-900 dark:text-white" />
           <span>Typography & Fonts</span>
         </div>
         {isOpen ? (
-          <ChevronDown className="w-4 h-4 text-neutral-400" />
+          <ChevronDown className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
         ) : (
-          <ChevronRight className="w-4 h-4 text-neutral-400" />
+          <ChevronRight className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
         )}
       </button>
 
       {isOpen && (
-        <div className="p-4 pt-1 flex flex-col gap-4 border-t border-white/5 bg-[#17171a]/50">
+        <div className="p-4 pt-1 flex flex-col gap-4 border-t border-black/10 dark:border-white/5 bg-neutral-50 dark:bg-[#17171a]/50">
           {/* Two-way Link Toggle */}
-          <div className="flex items-center justify-between p-2.5 bg-[#1f1f23] rounded-lg border border-white/5">
-            <span className="text-xs font-medium text-neutral-200">
+          <div className="flex items-center justify-between p-2.5 bg-neutral-100 dark:bg-[#1f1f23] rounded-lg border border-black/10 dark:border-white/5">
+            <span className="text-xs font-medium text-neutral-900 dark:text-neutral-200">
               Use Heading Font for Body
             </span>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -104,23 +104,23 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                 onChange={(e) => handleToggleLinkBody(e.target.checked)}
                 className="sr-only peer"
               />
-              <div className="w-8 h-4.5 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-white peer-checked:after:bg-black" />
+              <div className="w-8 h-4.5 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-black peer-checked:after:bg-white dark:peer-checked:bg-white dark:peer-checked:after:bg-black" />
             </label>
           </div>
 
           {/* HEADING FONT SECTION */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
-              <label className="text-[11px] font-medium text-neutral-400 uppercase tracking-wider">
+              <label className="text-[11px] font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
                 Heading Font
               </label>
-              <div className="flex bg-[#252529] p-0.5 rounded-md text-[11px]">
+              <div className="flex bg-neutral-200 dark:bg-[#252529] p-0.5 rounded-md text-[11px]">
                 <button
                   onClick={() => onChange({ fontHeadingSource: 'google' })}
                   className={`px-2 py-0.5 rounded ${
                     config.fontHeadingSource === 'google'
-                      ? 'bg-white text-black font-semibold'
-                      : 'text-neutral-400 hover:text-white'
+                      ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white dark:text-white font-semibold'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
                   Google
@@ -132,8 +132,8 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                   }}
                   className={`px-2 py-0.5 rounded ${
                     config.fontHeadingSource === 'system'
-                      ? 'bg-white text-black font-semibold'
-                      : 'text-neutral-400 hover:text-white'
+                      ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white dark:text-white font-semibold'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
                   Local
@@ -150,14 +150,14 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                     placeholder="Search Google Fonts..."
                     value={headingSearch}
                     onChange={(e) => setHeadingSearch(e.target.value)}
-                    className="w-full bg-[#1c1c20] border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-neutral-500 outline-none focus:border-white/30"
+                    className="w-full bg-white dark:bg-[#1c1c20] border border-black/10 dark:border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-neutral-900 dark:text-white placeholder-neutral-500 outline-none focus:border-black/30 dark:focus:border-white/30"
                   />
-                  <Search className="w-3.5 h-3.5 text-neutral-500 absolute left-2.5 top-2.5" />
+                  <Search className="w-3.5 h-3.5 text-neutral-600 absolute left-2.5 top-2.5" />
                 </div>
                 <select
                   value={config.fontHeading}
                   onChange={(e) => handleHeadingFontChange(e.target.value)}
-                  className="w-full bg-[#202024] border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-white/40 cursor-pointer"
+                  className="w-full bg-neutral-100 dark:bg-[#202024] border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-xs text-neutral-900 dark:text-white outline-none focus:border-black/40 dark:focus:border-white/40 cursor-pointer"
                 >
                   {filteredHeadingFonts.map((f) => (
                     <option key={f} value={f}>
@@ -174,7 +174,7 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                 <select
                   value={config.fontHeading}
                   onChange={(e) => handleHeadingFontChange(e.target.value)}
-                  className="w-full bg-[#202024] border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-white/40 cursor-pointer"
+                  className="w-full bg-neutral-100 dark:bg-[#202024] border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-xs text-neutral-900 dark:text-white outline-none focus:border-black/40 dark:focus:border-white/40 cursor-pointer"
                 >
                   {localFonts.map((f) => (
                     <option key={f} value={f}>
@@ -194,17 +194,17 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
           {/* BODY FONT SECTION */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
-              <label className="text-[11px] font-medium text-neutral-400 uppercase tracking-wider">
-                Body Font {config.linkBodyToHeading && <span className="text-neutral-500">(Linked)</span>}
+              <label className="text-[11px] font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
+                Body Font {config.linkBodyToHeading && <span className="text-neutral-600">(Linked)</span>}
               </label>
-              <div className="flex bg-[#252529] p-0.5 rounded-md text-[11px]">
+              <div className="flex bg-neutral-200 dark:bg-[#252529] p-0.5 rounded-md text-[11px]">
                 <button
                   disabled={config.linkBodyToHeading}
                   onClick={() => onChange({ fontBodySource: 'google' })}
                   className={`px-2 py-0.5 rounded ${
                     config.fontBodySource === 'google'
-                      ? 'bg-white text-black font-semibold'
-                      : 'text-neutral-400 hover:text-white disabled:opacity-40'
+                      ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white dark:text-white font-semibold'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white disabled:opacity-40'
                   }`}
                 >
                   Google
@@ -217,8 +217,8 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                   }}
                   className={`px-2 py-0.5 rounded ${
                     config.fontBodySource === 'system'
-                      ? 'bg-white text-black font-semibold'
-                      : 'text-neutral-400 hover:text-white disabled:opacity-40'
+                      ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white dark:text-white font-semibold'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white disabled:opacity-40'
                   }`}
                 >
                   Local
@@ -235,16 +235,16 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                       placeholder="Search Google Fonts..."
                       value={bodySearch}
                       onChange={(e) => setBodySearch(e.target.value)}
-                      className="w-full bg-[#1c1c20] border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-neutral-500 outline-none focus:border-white/30"
+                      className="w-full bg-white dark:bg-[#1c1c20] border border-black/10 dark:border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-neutral-900 dark:text-white placeholder-neutral-500 outline-none focus:border-black/30 dark:focus:border-white/30"
                     />
-                    <Search className="w-3.5 h-3.5 text-neutral-500 absolute left-2.5 top-2.5" />
+                    <Search className="w-3.5 h-3.5 text-neutral-600 absolute left-2.5 top-2.5" />
                   </div>
                 )}
                 <select
                   disabled={config.linkBodyToHeading}
                   value={config.fontBody}
                   onChange={(e) => handleBodyFontChange(e.target.value)}
-                  className="w-full bg-[#202024] border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-white/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-neutral-100 dark:bg-[#202024] border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-xs text-neutral-900 dark:text-white outline-none focus:border-black/40 dark:focus:border-white/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {filteredBodyFonts.map((f) => (
                     <option key={f} value={f}>
@@ -262,7 +262,7 @@ export const TypographyCollapsible: React.FC<TypographyCollapsibleProps> = ({
                   disabled={config.linkBodyToHeading}
                   value={config.fontBody}
                   onChange={(e) => handleBodyFontChange(e.target.value)}
-                  className="w-full bg-[#202024] border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-white/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-neutral-100 dark:bg-[#202024] border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-xs text-neutral-900 dark:text-white outline-none focus:border-black/40 dark:focus:border-white/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {localFonts.map((f) => (
                     <option key={f} value={f}>

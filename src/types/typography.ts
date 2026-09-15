@@ -10,6 +10,7 @@ export interface ScaleStep {
   tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'small';
   power: number;
   label: string;
+  isHidden?: boolean;
 }
 
 export interface VariableAxis {
@@ -83,6 +84,7 @@ export interface AppConfig {
   viewLayout: 'split' | 'desktop' | 'mobile';
   simScenario: 'landing' | 'blog';
   exportFormat: 'css' | 'tailwind';
+  uiTheme?: 'light' | 'dark';
   sidebarCollapsed: boolean;
   en: LanguageTypographyConfig;
   fa: LanguageTypographyConfig;

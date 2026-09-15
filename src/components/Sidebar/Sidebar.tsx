@@ -49,7 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <aside
         className={`
-          fixed md:relative top-0 left-0 h-full bg-[#131315] border-r border-white/10 flex flex-col z-50 md:z-20
+          fixed md:relative top-0 left-0 h-full bg-neutral-50 dark:bg-[#131315] border-r border-black/10 dark:border-white/10 flex flex-col z-50 md:z-20
           transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden shrink-0 shadow-2xl md:shadow-none
           ${sidebarCollapsed 
             ? '-translate-x-full md:translate-x-0 w-[85vw] sm:w-[360px] md:w-16' 
@@ -108,17 +108,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="sidebar-scroll flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
               <div className="p-3 sm:p-3.5 flex flex-col gap-3">
           {showFarsiOffState ? (
-            <div className="p-5 rounded-xl bg-[#1c1c1f] border border-white/5 flex flex-col items-center text-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white">
+            <div className="p-5 rounded-xl bg-white dark:bg-[#1c1c1f] border border-black/10 dark:border-white/5 flex flex-col items-center text-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center text-neutral-900 dark:text-white">
                 <Languages className="w-5 h-5" />
               </div>
 
               <div>
-                <h3 className="text-sm font-semibold text-white">
+                <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
                   Farsi (RTL) Disabled
                 </h3>
 
-                <p className="text-xs text-neutral-400 mt-1">
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
                   Enable Farsi in the toggle above to configure bilingual
                   Arabic / Persian modular scales, fonts, and tracking.
                 </p>
@@ -132,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   px-4
                   py-2
                   bg-white
-                  text-black
+                  text-neutral-900 dark:text-white
                   text-xs
                   font-semibold
                   rounded-lg

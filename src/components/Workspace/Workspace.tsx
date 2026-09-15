@@ -32,7 +32,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({
   const showMobile = viewLayout === 'split' || viewLayout === 'mobile';
 
   return (
-    <main className="flex-1 h-full flex flex-col min-w-0 overflow-hidden bg-[#0e0e10]">
+    <main className="flex-1 h-full flex flex-col min-w-0 overflow-hidden bg-white dark:bg-[#0e0e10]">
       {/* Workspace Toolbar */}
       <WorkspaceToolbar
         appConfig={appConfig}
@@ -50,6 +50,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({
                   type="desktop"
                   title={`${isFa ? 'FARSI' : 'ENGLISH'} DESKTOP SPECIMEN`}
                   badge={`${langConfig.dtBase}px / ${dtRatio.toFixed(3)}`}
+                  theme={appConfig.uiTheme}
                 >
                   <SpecimenView
                     config={langConfig}
@@ -69,6 +70,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({
                   type="mobile"
                   title={`${isFa ? 'FARSI' : 'ENGLISH'} MOBILE SPECIMEN`}
                   badge={`${mbBase}px / ${mbRatio.toFixed(3)}`}
+                  theme={appConfig.uiTheme}
                 >
                   <SpecimenView
                     config={langConfig}
@@ -90,6 +92,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({
                   type="desktop"
                   title={`${isFa ? 'FARSI' : 'ENGLISH'} DESKTOP SIMULATION`}
                   badge={simScenario === 'landing' ? 'LANDING' : 'EDITORIAL'}
+                  theme={appConfig.uiTheme}
                 >
                   {simScenario === 'landing' ? (
                     <SimulationLanding
@@ -117,6 +120,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({
                   type="mobile"
                   title={`${isFa ? 'FARSI' : 'ENGLISH'} MOBILE SIMULATION`}
                   badge={simScenario === 'landing' ? 'LANDING' : 'EDITORIAL'}
+                  theme={appConfig.uiTheme}
                 >
                   {simScenario === 'landing' ? (
                     <SimulationLanding
