@@ -144,41 +144,6 @@ export const ModularScaleCollapsible: React.FC<ModularScaleCollapsibleProps> = (
               </p>
             )}
           </div>
-          
-          <div className="h-px bg-black/5 dark:bg-white/5 my-1" />
-
-          {/* EXTENDED SCALE */}
-          <div className="flex flex-col gap-3">
-            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
-              Extended Steps
-            </span>
-            <div className="flex flex-col gap-2.5">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-neutral-600 dark:text-neutral-300 font-medium">Include Display (Above H1)</span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={config.hasDisplay}
-                    onChange={(e) => onChange({ hasDisplay: e.target.checked })}
-                    className="sr-only peer"
-                  />
-                  <div className="w-8 h-4.5 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-white peer-checked:after:bg-black" />
-                </label>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-neutral-600 dark:text-neutral-300 font-medium">Include X-Small (Below Small)</span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={config.hasXSmall}
-                    onChange={(e) => onChange({ hasXSmall: e.target.checked })}
-                    className="sr-only peer"
-                  />
-                  <div className="w-8 h-4.5 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-white peer-checked:after:bg-black" />
-                </label>
-              </div>
-            </div>
-          </div>
         </div>
       )}
     </div>

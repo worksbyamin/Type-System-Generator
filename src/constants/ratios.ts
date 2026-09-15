@@ -80,13 +80,11 @@ export const FALLBACK_SYSTEM_FONTS = [
 export const VARIABLE_FONTS_DATABASE: Record<string, VariableAxis[]> = {
   'Inter': [
     { tag: 'wght', name: 'Weight', min: 100, max: 900, defaultVal: 400, step: 10 },
-    { tag: 'slnt', name: 'Slant', min: -10, max: 0, defaultVal: 0, step: 1, unit: '°' }
   ],
   'Roboto Flex': [
     { tag: 'wght', name: 'Weight', min: 100, max: 1000, defaultVal: 400, step: 10 },
     { tag: 'wdth', name: 'Width', min: 25, max: 151, defaultVal: 100, step: 1, unit: '%' },
     { tag: 'opsz', name: 'Optical Size', min: 8, max: 144, defaultVal: 14, step: 1, unit: 'pt' },
-    { tag: 'slnt', name: 'Slant', min: -10, max: 0, defaultVal: 0, step: 1, unit: '°' }
   ],
   'Plus Jakarta Sans': [
     { tag: 'wght', name: 'Weight', min: 200, max: 800, defaultVal: 400, step: 10 }
@@ -115,7 +113,6 @@ export const VARIABLE_FONTS_DATABASE: Record<string, VariableAxis[]> = {
   ],
   'Cairo': [
     { tag: 'wght', name: 'Weight', min: 200, max: 1000, defaultVal: 400, step: 10 },
-    { tag: 'slnt', name: 'Slant', min: -11, max: 0, defaultVal: 0, step: 1, unit: '°' }
   ],
   'Rubik': [
     { tag: 'wght', name: 'Weight', min: 300, max: 900, defaultVal: 400, step: 10 }

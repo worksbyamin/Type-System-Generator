@@ -36,7 +36,7 @@ export const SpecimenView: React.FC<SpecimenViewProps> = ({
   return (
     <div
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="flex flex-col gap-0 max-w-4xl mx-auto pb-16 group/specimen"
+      className="flex flex-col gap-0 w-full max-w-4xl mx-auto pb-16 group/specimen"
     >
 
       {/* Add Larger Step Button */}
@@ -65,7 +65,7 @@ export const SpecimenView: React.FC<SpecimenViewProps> = ({
         return (
           <div
             key={step.name}
-            className="pb-1.5 border-b border-neutral-100 last:border-0 flex items-baseline gap-2 sm:gap-3 group relative pt-1.5 sm:-ml-4 mt-1"
+            className="pb-1.5 border-b border-neutral-100 last:border-0 flex items-baseline gap-2 sm:gap-3 group relative pt-1.5 mt-1"
           >
             {/* Inline Add Step Button (Appears on hover at the top edge, if not the first step) */}
             {onConfigChange && idx > 0 && (
@@ -86,8 +86,8 @@ export const SpecimenView: React.FC<SpecimenViewProps> = ({
               </div>
             )}
             {/* Step Name & Remove (Margin Column) */}
-            <div className="w-10 sm:w-12 shrink-0 flex items-center justify-end relative h-full">
-              <span className="text-[9px] font-mono font-bold text-neutral-400 dark:text-neutral-500 group-hover:opacity-0 transition-opacity uppercase text-right">
+            <div className="w-10 sm:w-12 shrink-0 flex items-center justify-start relative h-full">
+              <span className="text-[9px] font-mono font-bold text-neutral-400 dark:text-neutral-500 group-hover:opacity-0 transition-opacity uppercase text-start">
                 {step.name}
               </span>
               {onConfigChange && step.power !== 0 && (
