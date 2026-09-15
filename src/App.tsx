@@ -4,6 +4,7 @@ import { DEFAULT_EN_CONFIG, DEFAULT_FA_CONFIG } from './constants/ratios';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Workspace } from './components/Workspace/Workspace';
 import { loadGoogleFont } from './utils/fontLoader';
+import { Loader2 } from 'lucide-react';
 
 export default function App() {
   const [appConfig, setAppConfig] = useState<AppConfig>({
@@ -18,6 +19,24 @@ export default function App() {
     en: DEFAULT_EN_CONFIG,
     fa: DEFAULT_FA_CONFIG
   });
+
+
+  const [fontLoading, setFontLoading] = useState(false);
+
+  useEffect(() => {
+    let loadingCount = 0;
+    const handleFontLoading = (e: any) => {
+      if (e.detail.isLoading) {
+        loadingCount++;
+        setFontLoading(true);
+      } else {
+        loadingCount = Math.max(0, loadingCount - 1);
+        if (loadingCount === 0) setFontLoading(false);
+      }
+    };
+    window.addEventListener('font-loading', handleFontLoading);
+    return () => window.removeEventListener('font-loading', handleFontLoading);
+  }, []);
 
   useEffect(() => {
     loadGoogleFont(appConfig.en.fontHeading);
@@ -46,43 +65,45 @@ export default function App() {
     };
   }, []);
 
-  const handleUpdateAppConfig = (partial: Partial<AppConfig>) => {
-    setAppConfig((prev) => ({
-      ...prev,
-      ...partial
-    }));
+const handleUpdateAppConfig = (partial: Partial<AppConfig>) => {
+    setAppConfig((prev) => {
+      const next = { ...prev, ...partial };
+      // Sync maxPower and minPower across both configs to ensure H and P counts match
+      if (partial.en && partial.en.maxPower !== undefined) next.fa.maxPower = partial.en.maxPower;
+      if (partial.en && partial.en.minPower !== undefined) next.fa.minPower = partial.en.minPower;
+      if (partial.fa && partial.fa.maxPower !== undefined) next.en.maxPower = partial.fa.maxPower;
+      if (partial.fa && partial.fa.minPower !== undefined) next.en.minPower = partial.fa.minPower;
+      return next;
+    });
   };
 
-  const handleUpdateLangConfig = (
+const handleUpdateLangConfig = (
     lang: 'en' | 'fa',
     partial: Partial<LanguageTypographyConfig>
   ) => {
     setAppConfig((prev) => {
       const currentLangConfig = prev[lang];
-
       const updatedLangConfig = {
         ...currentLangConfig,
         ...partial
       };
 
-      let updatedFaConfig = prev.fa;
-
-      if (lang === 'en' && prev.fa.linkScaleToEn) {
-        updatedFaConfig = {
-          ...prev.fa,
-          dtBase: updatedLangConfig.dtBase,
-          dtRatioIdx: updatedLangConfig.dtRatioIdx,
-          mbBase: updatedLangConfig.mbBase,
-          mbRatioIdx: updatedLangConfig.mbRatioIdx,
-          mbScaleEnabled: updatedLangConfig.mbScaleEnabled
-        };
+      const next = {
+        ...prev,
+        [lang]: updatedLangConfig
+      };
+      
+      // Sync maxPower and minPower across both configs to ensure H and P counts match
+      if (partial.maxPower !== undefined) {
+        next.en.maxPower = partial.maxPower;
+        next.fa.maxPower = partial.maxPower;
+      }
+      if (partial.minPower !== undefined) {
+        next.en.minPower = partial.minPower;
+        next.fa.minPower = partial.minPower;
       }
 
-      return {
-        ...prev,
-        [lang]: updatedLangConfig,
-        ...(lang === 'en' ? { fa: updatedFaConfig } : {})
-      };
+      return next;
     });
   };
 
@@ -119,6 +140,14 @@ export default function App() {
         appConfig={appConfig}
         onUpdateAppConfig={handleUpdateAppConfig}
       />
+      
+      {fontLoading && (
+        <div className="fixed bottom-4 right-4 bg-neutral-900 text-white px-4 py-2.5 rounded-full shadow-lg flex items-center gap-3 text-sm font-medium z-50 animate-in fade-in slide-in-from-bottom-4">
+          <Loader2 className="w-4 h-4 animate-spin text-neutral-300" />
+          Loading Google Font...
+        </div>
+      )}
+
     </div>
   );
 }

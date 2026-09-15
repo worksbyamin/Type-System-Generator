@@ -40,7 +40,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({
       />
 
       {/* Main Preview Work Area - Has its own independent scroll container with responsive flex direction */}
-      <div className="workspace-scroll flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 flex flex-col xl:flex-row items-start xl:items-start justify-start xl:justify-center gap-6 min-h-0">
+      <div className="workspace-scroll flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 flex flex-col xl:flex-row items-stretch xl:items-stretch justify-start xl:justify-center gap-6 min-h-0">
         {previewMode === 'type' ? (
           <>
             {/* Desktop Specimen Viewport */}

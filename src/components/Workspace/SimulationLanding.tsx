@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu } from 'lucide-react';
 import { LanguageTypographyConfig, ScaleStepKey } from '../../types/typography';
 import {
+  getAllScaleSteps,
   calculatePxSize,
   calculateStepWeight,
   calculateStepLineHeight,
@@ -25,28 +26,34 @@ export const SimulationLanding: React.FC<SimulationLandingProps> = ({
   const variationSettings = buildFontVariationSettings(config.variableAxesValues);
 
   // Helper to compute inline style for any step
-  const getStepStyle = (stepKey: ScaleStepKey, isHeading = false): React.CSSProperties => {
-    const powerMap: Record<ScaleStepKey, number> = {
-      display: 6,
-      h1: 5,
-      h2: 4,
-      h3: 3,
-      h4: 2,
-      h5: 1,
-      base: 0,
-      small: -1,
-      xsmall: -2
-    };
-    const power = powerMap[stepKey];
-    const px = calculatePxSize(base, ratio, power);
-    const weight = calculateStepWeight(stepKey, power, config);
-    const lh = calculateStepLineHeight(stepKey, power, config);
-    const tracking = calculateStepTracking(stepKey, power, config);
-    const font = isHeading ? config.fontHeading : config.fontBody;
-    const decor = config.decorActive ? config.decorations[stepKey] : null;
+const getStepStyle = (stepKey: ScaleStepKey | string, isHeading = false): React.CSSProperties => {
+    const steps = getAllScaleSteps(config);
+    // Find exact match by name, then tag, then fallback
+    let step = steps.find(s => s.name === stepKey);
+    if (!step) {
+      if (isHeading) {
+        // Fallback to lowest heading if H5/H4 not found
+        step = steps.filter(s => s.power > 0).pop();
+      } else {
+        // Fallback to small/xsmall or base
+        step = steps.find(s => s.power < 0) || steps.find(s => s.power === 0);
+      }
+    }
+    // Ultimate fallback
+    if (!step) {
+      step = steps.find(s => s.power === 0) || steps[0];
+    }
+    
+    if (!step) return {}; // Should never happen
+    
+    const px = calculatePxSize(base, ratio, step.power);
+    const weight = calculateStepWeight(step.name, step.power, config);
+    const lh = calculateStepLineHeight(step.name, step.power, config);
+    const tracking = calculateStepTracking(step.name, step.power, config);
+    const decor = config.decorActive ? (config.decorations as any)[step.name] : null;
 
     return {
-      fontFamily: `"${font}", sans-serif`,
+      fontFamily: isHeading ? `"${config.fontHeading}", sans-serif` : `"${config.fontBody}", sans-serif`,
       fontSize: `${px}px`,
       lineHeight: lh,
       letterSpacing: `${tracking}em`,

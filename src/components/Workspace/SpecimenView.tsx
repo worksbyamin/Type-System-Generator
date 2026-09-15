@@ -36,7 +36,7 @@ export const SpecimenView: React.FC<SpecimenViewProps> = ({
   return (
     <div
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="flex flex-col gap-0 w-full max-w-4xl mx-auto pb-16 group/specimen"
+      className="flex flex-col gap-0 w-full pb-16 group/specimen"
     >
 
       {/* Add Larger Step Button */}

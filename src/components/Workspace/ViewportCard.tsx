@@ -24,7 +24,7 @@ export const ViewportCard: React.FC<ViewportCardProps> = ({
         isDesktop
           ? 'w-full xl:flex-1 xl:min-w-0'
           : 'w-full max-w-[420px] self-center xl:w-[380px] xl:max-w-[380px] xl:shrink-0'
-      } h-fit`}
+      } h-full min-h-[540px]`}
     >
       {/* Viewport Frame Header */}
       <div className="h-10 px-3 sm:px-4 bg-neutral-100/90 border-b border-neutral-200/80 flex items-center justify-between shrink-0 select-none">
