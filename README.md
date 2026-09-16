@@ -1,4 +1,4 @@
-# 📐 Type System Generator
+# 📐 Type System Generator ( RTL Support )
 
 <div align="center">
   <a href="https://worksbyamin.github.io/Type-System-Generator/">
@@ -15,6 +15,12 @@
 </div>
 <div align="center">
   <sup>This project was "vibe coded" in a short time because I needed a free, advanced typescale generator with local, variable and rtl font support that simply didn't exist yet!</sup>
+</div>
+
+<br />
+
+<div align="center">
+  <strong>Feel free to report bugs or request improvements or features. <br /> This tool will be free and opensource for all of us designers.</strong>
 </div>
 
 <br />
