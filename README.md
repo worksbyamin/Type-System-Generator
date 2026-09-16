@@ -11,6 +11,12 @@
 <br />
 
 <div align="center">
+  <strong>This app is still in it's early stages and may contain various bugs</strong>
+</div>
+
+<br />
+
+<div align="center">
   <strong>A powerful, visual web application designed to create, preview, and export comprehensive, fluid typography systems and design tokens.</strong>
 </div>
 <div align="center">
